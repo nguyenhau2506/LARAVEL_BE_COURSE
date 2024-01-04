@@ -1,0 +1,29 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Course API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/test/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a User",
+                "operationId": "getUser",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "406": {
+                        "description": "Not acceptable"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    }
+}

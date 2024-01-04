@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('test')->group(function () {
-    Route::get('/users', function () {
-        return response()->json([
-            'name' => 'Abigail',
-            'state' => 'CA'
-        ]);
-    });
-});
+// Route::prefix('test')->group(function () {
+//     Route::get('/users', function () {
+//         return response()->json([
+//             'name' => 'Abigail',
+//             'state' => 'CA'
+//         ]);
+//     });
+// });
 include_once __DIR__ . '/api/test.php';
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
