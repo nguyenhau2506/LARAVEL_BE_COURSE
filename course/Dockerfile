@@ -1,4 +1,3 @@
-# Use the specified PHP image
 FROM php:8.1-fpm
 
 # Arguments defined in docker-compose.yml
@@ -15,31 +14,32 @@ RUN apt-get update && \
         libonig-dev \
         libxml2-dev \
         zip \
-        unzip \
-        sudo && \
+        unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Create a non-root user
-RUN useradd -m $user -u $uid
-
-# Add the user to the sudo group
-RUN usermod -aG sudo $user
-
-
+# Clear cache
+# RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd
 
-# Get the latest Composer
+# Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Create the .composer directory and set ownership
+# Create system user to run Composer and Artisan Commands
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+    chown -R $user:$user /home/$user \
+    # chown -R $user:$user /var/www
 
-# Set the working directory
+# Set working directory
 WORKDIR /var/www
 
-# Change to the non-root user
+
+# RUN echo "[www]" >> /usr/local/etc/php-fpm.d/zz-custom.conf && \
+#     echo "user = $user" >> /usr/local/etc/php-fpm.d/zz-custom.conf && \
+#     echo "group = $user" >> /usr/local/etc/php-fpm.d/zz-custom.conf
+
+
 USER $user

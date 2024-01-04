@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('test')->group(function () {
+    Route::get('/users', function () {
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA'
+        ]);
+    });
 });
+include_once __DIR__ . '/api/test.php';
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
