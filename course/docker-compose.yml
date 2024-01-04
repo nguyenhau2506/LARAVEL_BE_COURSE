@@ -8,39 +8,52 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: laravel-app
-    restart: unless-stopped
+    # restart: unless-stopped
     working_dir: /var/www/html/
     volumes:
       - ./:/var/www/html/
     networks:
-      - photos
+      - course_be_network
 
   nginx:
     image: nginx:stable-alpine
-    restart: unless-stopped
+    # restart: unless-stopped
     ports:
       - 80:80
     volumes:
       - ./:/var/www/html
       - ./nginx/conf.d:/etc/nginx/conf.d/
     networks:
-      - photos
-  db:
-    image: mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: photo_gallery_laravel
-      MYSQL_ROOT_PASSWORD: mysql12345
-      MYSQL_USER: 123456
-      MYSQL_PASSWORD: mysql12345
-    ports:
-      - "9906:3306"
-    volumes:
-      - ./database/photo-gallery-laravel-database.sql:/docker-entrypoint-initdb.d/dump.sql
-    networks:
-      - photos
+      - course_be_network
 
-#Docker Networks
+  db:
+    image: postgres
+    # restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: course
+    ports:
+      - "5432:5432"
+    volumes:
+      # - postgres_data:/var/lib/postgresql/data
+      - ~/test/:/var/lib/postgresql/data
+    networks:
+      - course_be_network
+
+  pg-admin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8080:80"
+    networks:
+      - course_be_network
+
+# Docker Networks
 networks:
-  photos:
+  course_be_network:
     driver: bridge
+volumes:
+  postgres_data:
