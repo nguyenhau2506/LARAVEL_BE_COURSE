@@ -17,7 +17,8 @@ services:
 
   nginx:
     image: nginx:stable-alpine
-    # restart: unless-stopped
+    build:
+      context: ./nginx
     ports:
       - 80:80
     volumes:
