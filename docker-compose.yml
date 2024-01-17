@@ -5,7 +5,7 @@ services:
       args:
         user: nguyenhau2506
         uid: 1000
-      context: ./
+      context: ./course
       dockerfile: Dockerfile
     image: laravel-course
     # restart: unless-stopped
@@ -18,7 +18,7 @@ services:
   nginx:
     image: nginx:stable-alpine
     build:
-      context: ./nginx
+      context: .course/nginx
     ports:
       - 80:80
     volumes:
