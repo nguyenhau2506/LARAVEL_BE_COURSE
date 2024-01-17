@@ -18,7 +18,7 @@ services:
   nginx:
     image: nginx:stable-alpine
     build:
-      context: .course/nginx
+      context: ./course/nginx
     ports:
       - 80:80
     volumes:

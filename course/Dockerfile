@@ -35,10 +35,10 @@ RUN mkdir -p /home/$user/.composer && \
 
 # Set working directory
 WORKDIR /var/www
-
-RUN cp .env.example .env
-RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && \
-    composer clear-cache
+RUN ls -la
+# RUN cp .env.example .env
+# RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && \
+#     composer clear-cache
 
 
 # RUN echo "[www]" >> /usr/local/etc/php-fpm.d/zz-custom.conf && \
