@@ -36,7 +36,7 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
-RUN cp env.example .env
+RUN cp .env.example .env
 RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && \
     composer clear-cache
 
