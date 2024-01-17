@@ -4,6 +4,6 @@ FROM nginx:stable-alpine
 RUN mkdir -p /var/www/html
 
 # Set permissions for /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+# RUN chown -R www-data:www-data /var/www/html
 
 # Continue with your other configurations...
