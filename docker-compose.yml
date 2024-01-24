@@ -9,20 +9,19 @@ services:
       dockerfile: Dockerfile
     image: laravel-course
     # restart: unless-stopped
-    working_dir: /var/www/html/
+    working_dir: /var/www/
     volumes:
-      - ./:/var/www/html/
+      - ./:/var/www/
     networks:
       - course_be_network
 
   nginx:
     image: nginx:stable-alpine
-    build:
-      context: ./course/nginx
+    container_name: nginx
     ports:
       - 80:80
     volumes:
-      - ./:/var/www/html
+      - ./:/var/www
       - ./nginx/conf.d:/etc/nginx/conf.d/
     networks:
       - course_be_network
