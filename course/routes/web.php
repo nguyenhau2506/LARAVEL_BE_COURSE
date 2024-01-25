@@ -23,7 +23,7 @@ Route::get('/', function () {
 // Route::get('/classes', 'ClassController@getAllClass');
 // Route::get('/classes/{id}', 'ClassController@getClassById');
 
-Route::resource('photos', ClassController::class)
+Route::resource('classes', ClassController::class)
         ->missing(function (Request $request) {
-            return Redirect::route('photos.index');
+            return Redirect::route('classes.index');
         });
