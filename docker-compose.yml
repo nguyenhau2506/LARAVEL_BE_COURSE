@@ -26,20 +26,20 @@ services:
     networks:
       - course_be_network
 
-  db:
-    image: postgres
-    # restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: course
-    ports:
-      - "5432:5432"
-    volumes:
-      # - postgres_data:/var/lib/postgresql/data
-      - ~/test/:/var/lib/postgresql/data
-    networks:
-      - course_be_network
+  # db:
+  #   image: postgres
+  #   # restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: 12345
+  #     POSTGRES_DB: course
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     # - postgres_data:/var/lib/postgresql/data
+  #     - ~/test/:/var/lib/postgresql/data
+  #   networks:
+  #     - course_be_network
 
   pg-admin:
     image: dpage/pgadmin4
