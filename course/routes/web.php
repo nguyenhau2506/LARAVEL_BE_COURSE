@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClassController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/classes', 'ClassController@getAllClass');
+// Route::get('/classes/{id}', 'ClassController@getClassById');
+
+Route::resource('photos', ClassController::class)
+        ->missing(function (Request $request) {
+            return Redirect::route('photos.index');
+        });
