@@ -17,6 +17,8 @@ class ClassController extends Controller
         //
         info("request");
         \Log::info("ClassController: getAllClass");
+        $user = AuthController::getUser();
+        info($user);
         try {
             return response()->json([
                 'success' => true,
