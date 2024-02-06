@@ -10,13 +10,13 @@ class SocialController extends Controller
 {
     public function redirect($provider)
     {
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)->setScopes(['openid', 'email'])->redirect();
     }
 
     public function callback($provider)
     {
 
-        $getInfo = Socialite::driver($provider)->user();
+        $getInfo = Socialite::driver($provider)->stateless()->user();
 
         $user = $this->createUser($getInfo, $provider);
 
