@@ -45,6 +45,9 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
+    Route::get('/redirect/{provider}', 'SocialController@redirect');
+    Route::get('/callback/{provider}', 'SocialController@callback');
+   
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
