@@ -23,7 +23,8 @@ Route::get('/', function () {
 // Route::get('/classes', 'ClassController@getAllClass');
 // Route::get('/classes/{id}', 'ClassController@getClassById');
 
-Route::resource('classes', ClassController::class)
-        ->missing(function (Request $request) {
-            return Redirect::route('classes.index');
-        });
+// Route::resource('classes', ClassController::class)
+// ->missing(function (Request $request) {
+//     return Redirect::route('classes.index');
+// });
+
